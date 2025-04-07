@@ -1,5 +1,6 @@
 const http = require ('http')
 const fs = require('fs')
+const express = require('express');
 const app = express();
 const port = 5000
 
@@ -9,7 +10,7 @@ const server = http.createServer(function(req, res){
         if(error) {
             res.writeHead(404)
             res.write('Error: file not found')
-        }
+        }   
         else {
             res.write(data)
         }
