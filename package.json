@@ -1,24 +1,5 @@
 {
-  "name": "dgt-2025",
-  "version": "1.0.0",
-  "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/211089/JapanWebsite.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/211089/JapanWebsite/issues"
-  },
-  "homepage": "https://github.com/211089/JapanWebsite#readme",
-  "description": "",
   "dependencies": {
-    "express": "^5.1.0",
-    "http": "^0.0.1-security"
+    "sqlite3": "^5.1.7"
   }
 }
