@@ -1,41 +1,27 @@
+const express = require('express');
+const app = express();
+const bodyParser = require('body-parser');
+const path = require('path');
 const sqlite3 = require('sqlite3').verbose();
-let sql;
+let sql; 
 
-//conecting to DB
-const db = new sqlite3.Database('./test.db',sqlite3.OPEN_READWRITE,(err)=>{
-    if (err)
-         return console.error(err.message);
-})
-//creating a table
-//sql = 'CREATE TABLE users(id INTEGER PRIMARY KEY, first_name,username,password)';
-//db.run(sql);
+const PORT = process.env.PORT || 5000;
 
-//dropping a table
-//db.run("DROP TABLE users")
+// Middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static('public'));
 
-//insert data into table
-//sql = 'INSERT INTO users(first_name,username,password) VALUES (?,?,?)';
-//db.run(sql,["greg","greg2468","gregiscool123"],(err)=> {
-//    if (err) return console.error(err.message);
-//})
+// Database connection
+const db = new sqlite3.Database('./database/flashcards.db', (err) => {
+    if (err) {
+        console.error('Error opening database ' + err.message);
+    } else {
+        console.log('Connected to the flashcards database.');
+    }
+});
 
-//update data
-//sql = 'UPDATE users SET first_name = ? WHERE id = ?';
-//db.run(sql,['Jake',1],(err)=>{
-//    if (err) return console.error(err.message);
-//})
-
-//delet data
-/*sql = 'DELETE FROM users WHERE id = ?';
-db.run(sql,[2],(err)=>{
-    if (err) return console.error(err.message);
-})
-
-//query the data
-sql = 'SELECT * FROM users';
-db.all(sql,[],(err,rows)=>{
-    if (err) return console.error(err.message);
-    rows.forEach((row)=>{
-        console.log(row);
-    })
-})*/
+// Start the server
+app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+});
